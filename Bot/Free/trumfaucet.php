@@ -23,7 +23,7 @@ function Claim(){
 	$r = Requests::get(host."dashboard/claim",headers())[1];
 	$ready = trim(explode('</h6>',explode('<h6 class="font-weight-bolder mb-0 seconds">' , $r)[1])[0]);
 	if($ready == "You Can Claim"){
-		$cap = FreeCaptcha::Icon(headers());
+		$cap = FreeCaptcha::Icon_Hash(headers(), host.'src/captcha-request.php');
 		if(!$cap)return;
 	}else{
 		$minutes = explode(':', $ready)[0];
@@ -34,10 +34,6 @@ function Claim(){
 	}
 	$data = "captcha-hf=$cap&captcha-idhf=0&claim=";
 	$r = Requests::post(host.'dashboard/claim', headers(), $data)[1];
-	//$ready = trim(explode('</h6>',explode('<h6 class="font-weight-bolder mb-0 seconds">' , $r)[1])[0]);
-	//if($ready == "You Can Claim"){
-	//	return;
-	//}
 }
 
 $banner->Banner1(1);

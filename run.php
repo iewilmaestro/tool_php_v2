@@ -57,6 +57,8 @@ require "App/autoload.php";
 require "config.php";
 
 $banner = new Banner();
+$scrap = new HtmlScrap();
+
 
 $banner->Welcome();
 // cek config.php
